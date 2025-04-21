@@ -1,0 +1,526 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Spatial Analysis of major communicable and chronic diseasesin Kenya},
+  pdfauthor={CHEGE GEORGE MWANGI (SCT213-C002-0004/2020)},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Spatial Analysis of major communicable and chronic diseasesin
+Kenya}
+\author{CHEGE GEORGE MWANGI (SCT213-C002-0004/2020)}
+\date{2025-04-20}
+
+\begin{document}
+\maketitle
+
+\textbf{INTRODUCTION}
+
+Understanding the geographic distribution of major communicable and
+chronic diseases is critical for targeting public health interventions
+in Kenya. In this analysis, we combine county‑level administrative
+boundaries with case records for Malaria, Tuberculosis (TB), HIV and
+Asthma to:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Quantify incidence} by computing the number of reported cases
+  per disease in each of Kenya's 47 counties.\\
+\item
+  \textbf{Visualize spatial patterns} via choropleth maps, using color
+  ramps tailored to each disease.\\
+\item
+  \textbf{Compare relative burden} across diseases and regions,
+  highlighting hotspots where case counts are especially high.
+\end{enumerate}
+
+Our data sources are:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{KEN\_adm1 shapefile} from the Kenya National Bureau of
+  Statistics, providing up‑to‑date county boundaries.\\
+\item
+  \textbf{Disease case CSV} (WHO prediction dataset), containing
+  individual case records with county identifiers and disease labels.
+\end{itemize}
+
+By the end of this report, we will have four clear, standalone
+maps---one per disease---and insights into where resources and
+interventions might be most urgently needed.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{packages }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"sf"}\NormalTok{, }\StringTok{"spData"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{, }\StringTok{"tidyverse"}\NormalTok{)}
+\NormalTok{installed }\OtherTok{\textless{}{-}}\NormalTok{ packages }\SpecialCharTok{\%in\%} \FunctionTok{installed.packages}\NormalTok{()}
+\FunctionTok{library}\NormalTok{(sf)          }\CommentTok{\# For spatial data handling}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Linking to GEOS 3.13.1, GDAL 3.10.2, PROJ 9.5.1; sf_use_s2() is TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)   }\CommentTok{\# For data manipulation}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.4     v readr     2.1.5
+## v forcats   1.0.0     v stringr   1.5.1
+## v ggplot2   3.5.2     v tibble    3.2.1
+## v lubridate 1.9.4     v tidyr     1.3.1
+## v purrr     1.0.4
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)     }\CommentTok{\# For visualization}
+\FunctionTok{library}\NormalTok{(spdep)       }\CommentTok{\# For spatial autocorrelation}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: spData
+## To access larger datasets in this package, install the spDataLarge
+## package with: `install.packages('spDataLarge',
+## repos='https://nowosad.github.io/drat/', type='source')`
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tmap)        }\CommentTok{\# For thematic mapping}
+\FunctionTok{library}\NormalTok{(sp)          }\CommentTok{\# For spatial data classes}
+\FunctionTok{library}\NormalTok{(RColorBrewer)}\CommentTok{\# For color palettes}
+\FunctionTok{library}\NormalTok{(leaflet)     }\CommentTok{\# For interactive maps}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load Kenya administrative shape file}
+\NormalTok{Counties\_shp }\OtherTok{\textless{}{-}} \FunctionTok{st\_read}\NormalTok{(}\StringTok{"C:/Users/cex/Desktop/data science/DATA SCIENCE 4.2 2025/SDS 2403 R PROGRAMMING FOR BUSINESS ANALYTICS/New folder/KEN\_adm\_shp"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Multiple layers are present in data source C:\Users\cex\Desktop\data science\DATA SCIENCE 4.2 2025\SDS 2403 R PROGRAMMING FOR BUSINESS ANALYTICS\New folder\KEN_adm_shp, reading layer `KEN_adm0'.
+## Use `st_layers' to list all layer names and their type in a data source.
+## Set the `layer' argument in `st_read' to read a particular layer.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in CPL_read_ogr(dsn, layer, query, as.character(options), quiet, :
+## automatically selected the first layer in a data source containing more than
+## one.
+\end{verbatim}
+
+\begin{verbatim}
+## Reading layer `KEN_adm0' from data source 
+##   `C:\Users\cex\Desktop\data science\DATA SCIENCE 4.2 2025\SDS 2403 R PROGRAMMING FOR BUSINESS ANALYTICS\New folder\KEN_adm_shp' 
+##   using driver `ESRI Shapefile'
+## Simple feature collection with 1 feature and 67 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 33.90959 ymin: -4.720417 xmax: 41.92622 ymax: 5.061166
+## Geodetic CRS:  WGS 84
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# List all shape file layers}
+\FunctionTok{st\_layers}\NormalTok{(}\StringTok{"C:/Users/cex/Desktop/data science/DATA SCIENCE 4.2 2025/SDS 2403 R PROGRAMMING FOR BUSINESS ANALYTICS/New folder/KEN\_adm\_shp"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Driver: ESRI Shapefile 
+## Available layers:
+##   layer_name geometry_type features fields              crs_name
+## 1   KEN_adm0       Polygon        1     67                WGS 84
+## 2   KEN_adm1       Polygon       47     12                WGS 84
+## 3   KEN_adm2       Polygon      302     14                WGS 84
+## 4   KEN_adm3       Polygon     1446     15                WGS 84
+## 5  subcounty       Polygon      302     14 WGS 84 / UTM zone 37S
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Read counties (KEN\_adm1)}
+\NormalTok{counties\_df }\OtherTok{\textless{}{-}} \FunctionTok{st\_read}\NormalTok{(}\StringTok{"C:/Users/cex/Desktop/data science/DATA SCIENCE 4.2 2025/SDS 2403 R PROGRAMMING FOR BUSINESS ANALYTICS/New folder/KEN\_adm\_shp"}\NormalTok{, }
+                          \AttributeTok{layer =} \StringTok{"KEN\_adm1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Reading layer `KEN_adm1' from data source 
+##   `C:\Users\cex\Desktop\data science\DATA SCIENCE 4.2 2025\SDS 2403 R PROGRAMMING FOR BUSINESS ANALYTICS\New folder\KEN_adm_shp' 
+##   using driver `ESRI Shapefile'
+## Simple feature collection with 47 features and 12 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 33.90959 ymin: -4.720417 xmax: 41.92622 ymax: 5.061166
+## Geodetic CRS:  WGS 84
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Read the healthcare CSV file}
+\NormalTok{Diseases\_df }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Kenya Malaria\_Prediction Dataset by who(1).csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 5000 Columns: 16
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (11): Gender, Region, Fever, Headache, Chills, Sweats, Fatigue, Parasite...
+## dbl  (5): Patient ID, Age, Hemoglobin (g/dL), Platelet (cells/?L), WBC (cell...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# View the structure to understand the data}
+\FunctionTok{str}\NormalTok{(Diseases\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## spc_tbl_ [5,000 x 16] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ Patient ID         : num [1:5000] 1 2 3 4 5 6 7 8 9 10 ...
+##  $ Age                : num [1:5000] 52 93 15 72 61 21 83 87 75 75 ...
+##  $ Gender             : chr [1:5000] "Male" "Male" "Male" "Female" ...
+##  $ Region             : chr [1:5000] "Rural" "Rural" "Rural" "Urban" ...
+##  $ Fever              : chr [1:5000] "Yes" "Yes" "Yes" "Yes" ...
+##  $ Headache           : chr [1:5000] "No" "Yes" "Yes" "No" ...
+##  $ Chills             : chr [1:5000] "Yes" "No" "Yes" "Yes" ...
+##  $ Sweats             : chr [1:5000] "No" "Yes" "No" "No" ...
+##  $ Fatigue            : chr [1:5000] "Yes" "Yes" "No" "No" ...
+##  $ Hemoglobin (g/dL)  : num [1:5000] 12.2 11.5 12.5 12.7 11.6 12.7 10.5 11.2 13.7 10.9 ...
+##  $ Platelet (cells/?L): num [1:5000] 367281 261529 383009 245800 379350 ...
+##  $ WBC (cells/?L)     : num [1:5000] 10578 6367 11904 11793 10677 ...
+##  $ Parasite Detected  : chr [1:5000] "No" "Yes" "No" "No" ...
+##  $ Diagnosis          : chr [1:5000] "Negative" "Negative" "Negative" "Negative" ...
+##  $ NAME_1             : chr [1:5000] "Tharaka-Nithi" "West Pokot" "Kitui" "Migori" ...
+##  $ Diseases           : chr [1:5000] "TB" "Malaria" "HIV" "TB" ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   `Patient ID` = col_double(),
+##   ..   Age = col_double(),
+##   ..   Gender = col_character(),
+##   ..   Region = col_character(),
+##   ..   Fever = col_character(),
+##   ..   Headache = col_character(),
+##   ..   Chills = col_character(),
+##   ..   Sweats = col_character(),
+##   ..   Fatigue = col_character(),
+##   ..   `Hemoglobin (g/dL)` = col_double(),
+##   ..   `Platelet (cells/?L)` = col_double(),
+##   ..   `WBC (cells/?L)` = col_double(),
+##   ..   `Parasite Detected` = col_character(),
+##   ..   Diagnosis = col_character(),
+##   ..   NAME_1 = col_character(),
+##   ..   Diseases = col_character()
+##   .. )
+##  - attr(*, "problems")=<externalptr>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(Diseases\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 16
+##   `Patient ID`   Age Gender Region Fever Headache Chills Sweats Fatigue
+##          <dbl> <dbl> <chr>  <chr>  <chr> <chr>    <chr>  <chr>  <chr>  
+## 1            1    52 Male   Rural  Yes   No       Yes    No     Yes    
+## 2            2    93 Male   Rural  Yes   Yes      No     Yes    Yes    
+## 3            3    15 Male   Rural  Yes   Yes      Yes    No     No     
+## 4            4    72 Female Urban  Yes   No       Yes    No     No     
+## 5            5    61 Male   Rural  No    Yes      Yes    No     No     
+## 6            6    21 Male   Rural  Yes   Yes      No     No     Yes    
+## # i 7 more variables: `Hemoglobin (g/dL)` <dbl>, `Platelet (cells/?L)` <dbl>,
+## #   `WBC (cells/?L)` <dbl>, `Parasite Detected` <chr>, Diagnosis <chr>,
+## #   NAME_1 <chr>, Diseases <chr>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Merge shape file (counties\_df) with Diseases\_df by county name (NAME\_1)}
+\NormalTok{merged\_data }\OtherTok{\textless{}{-}}\NormalTok{ counties\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{left\_join}\NormalTok{(Diseases\_df, }\AttributeTok{by =} \StringTok{"NAME\_1"}\NormalTok{)}
+
+\CommentTok{\# View the merged result}
+\FunctionTok{head}\NormalTok{(merged\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Simple feature collection with 6 features and 27 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 35.52292 ymin: -0.198901 xmax: 36.49007 ymax: 1.660731
+## Geodetic CRS:  WGS 84
+##   ID_0 ISO NAME_0 ID_1  NAME_1 HASC_1 CCN_1 CCA_1 TYPE_1 ENGTYPE_1 NL_NAME_1
+## 1  118 KEN  Kenya    1 Baringo  KE.BA    30  <NA> County    County      <NA>
+## 2  118 KEN  Kenya    1 Baringo  KE.BA    30  <NA> County    County      <NA>
+## 3  118 KEN  Kenya    1 Baringo  KE.BA    30  <NA> County    County      <NA>
+## 4  118 KEN  Kenya    1 Baringo  KE.BA    30  <NA> County    County      <NA>
+## 5  118 KEN  Kenya    1 Baringo  KE.BA    30  <NA> County    County      <NA>
+## 6  118 KEN  Kenya    1 Baringo  KE.BA    30  <NA> County    County      <NA>
+##   VARNAME_1 Patient ID Age Gender Region Fever Headache Chills Sweats Fatigue
+## 1      <NA>         14  22   Male  Urban   Yes      Yes     No    Yes      No
+## 2      <NA>         63  44 Female  Urban    No       No     No     No      No
+## 3      <NA>        134  37   Male  Rural   Yes       No    Yes    Yes      No
+## 4      <NA>        138  91 Female  Rural   Yes      Yes    Yes    Yes     Yes
+## 5      <NA>        186  75   Male  Urban   Yes       No    Yes     No      No
+## 6      <NA>        224  92 Female  Rural    No       No     No     No     Yes
+##   Hemoglobin (g/dL) Platelet (cells/?L) WBC (cells/?L) Parasite Detected
+## 1              11.6              189396          10420               Yes
+## 2              13.5              199202          10569                No
+## 3              14.3              183049           5578                No
+## 4              12.7              343369           7486                No
+## 5              12.7              203258           6945               Yes
+## 6              13.2              288155           5718                No
+##   Diagnosis Diseases                       geometry
+## 1  Positive       TB MULTIPOLYGON (((35.67241 1....
+## 2  Negative       TB MULTIPOLYGON (((35.67241 1....
+## 3  Negative      HIV MULTIPOLYGON (((35.67241 1....
+## 4  Positive      HIV MULTIPOLYGON (((35.67241 1....
+## 5  Negative       TB MULTIPOLYGON (((35.67241 1....
+## 6  Negative  Malaria MULTIPOLYGON (((35.67241 1....
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Count cases per condition per county}
+\NormalTok{diseases\_ken }\OtherTok{\textless{}{-}}\NormalTok{ Diseases\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(NAME\_1, Diseases) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{Cases =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{.groups =} \StringTok{"drop"}\NormalTok{)}
+\CommentTok{\# List of diseases to map}
+\NormalTok{diseases }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Malaria"}\NormalTok{, }\StringTok{"TB"}\NormalTok{, }\StringTok{"HIV"}\NormalTok{, }\StringTok{"Asthma"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Loop through diseases and plot}
+\ControlFlowTok{for}\NormalTok{ (disease }\ControlFlowTok{in}\NormalTok{ diseases) \{}
+  
+  \CommentTok{\# Filter for one disease}
+\NormalTok{  Dis\_data }\OtherTok{\textless{}{-}}\NormalTok{ diseases\_ken }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(Diseases }\SpecialCharTok{==}\NormalTok{ disease)}
+  
+  \CommentTok{\# Merge with spatial data}
+\NormalTok{  merged\_map }\OtherTok{\textless{}{-}}\NormalTok{ counties\_df }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{left\_join}\NormalTok{( Dis\_data, }\AttributeTok{by =} \StringTok{"NAME\_1"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# a named vector of palettes}
+\NormalTok{palettes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \AttributeTok{Malaria =} \StringTok{"YlOrRd"}\NormalTok{,}
+  \AttributeTok{TB      =} \StringTok{"Blues"}\NormalTok{,}
+  \AttributeTok{HIV     =} \StringTok{"Purples"}\NormalTok{,}
+  \AttributeTok{Asthma  =} \StringTok{"Greens"}
+\NormalTok{)}
+
+\CommentTok{\# loop: merge + plot in one step}
+\ControlFlowTok{for}\NormalTok{ (d }\ControlFlowTok{in} \FunctionTok{names}\NormalTok{(palettes)) \{}
+  
+  \CommentTok{\# 1) subset your counts  }
+\NormalTok{  df\_d }\OtherTok{\textless{}{-}}\NormalTok{ diseases\_ken }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{filter}\NormalTok{(Diseases }\SpecialCharTok{==}\NormalTok{ d)}
+  
+  \CommentTok{\# 2) join spatial geometry  }
+\NormalTok{  map\_d }\OtherTok{\textless{}{-}}\NormalTok{ counties\_df }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{left\_join}\NormalTok{(df\_d, }\AttributeTok{by =} \StringTok{"NAME\_1"}\NormalTok{)}
+  
+  \CommentTok{\# 3) build \& immediately print the plot  }
+\NormalTok{  p }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(map\_d) }\SpecialCharTok{+}
+    \FunctionTok{geom\_sf}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ Cases), }\AttributeTok{color =} \StringTok{"white"}\NormalTok{, }\AttributeTok{size =} \FloatTok{0.2}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{scale\_fill\_distiller}\NormalTok{(}
+      \AttributeTok{palette   =}\NormalTok{ palettes[d],}
+      \AttributeTok{direction =} \DecValTok{1}\NormalTok{,}
+      \AttributeTok{na.value  =} \StringTok{"grey90"}\NormalTok{,}
+      \AttributeTok{name      =} \StringTok{"Count"}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title    =} \FunctionTok{paste0}\NormalTok{(d, }\StringTok{" Cases by County"}\NormalTok{),}
+      \AttributeTok{subtitle =} \StringTok{"Kenya, 2020"}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"right"}\NormalTok{)}
+  
+  \FunctionTok{print}\NormalTok{(p)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Spatial-Analysis-of-Malaria-Incidence-in-Kenya_files/figure-latex/unnamed-chunk-8-1.pdf}
+\includegraphics{Spatial-Analysis-of-Malaria-Incidence-in-Kenya_files/figure-latex/unnamed-chunk-8-2.pdf}
+\includegraphics{Spatial-Analysis-of-Malaria-Incidence-in-Kenya_files/figure-latex/unnamed-chunk-8-3.pdf}
+\includegraphics{Spatial-Analysis-of-Malaria-Incidence-in-Kenya_files/figure-latex/unnamed-chunk-8-4.pdf}
+
+\textbf{CONCLUSION}
+
+This spatial analysis reveals distinct geographic patterns for each
+disease:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Malaria} shows its highest burdens in the western and coastal
+  counties, consistent with known high‑transmission zones.\\
+\item
+  \textbf{TB} case counts are elevated in urban centers (e.g.~Nairobi,
+  Mombasa) and portions of the Rift Valley, likely reflecting both
+  population density and health‑system access.\\
+\item
+  \textbf{HIV} remains concentrated in western counties bordering Lake
+  Victoria, aligning with historical prevalence data.\\
+\item
+  \textbf{Asthma} rates appear more dispersed, with moderate counts in
+  both highland and lowland regions---suggesting environmental and
+  lifestyle factors at play.
+\end{itemize}
+
+These maps can guide policymakers and health practitioners to:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Prioritize resource allocation} (e.g.~bed nets, diagnostic
+  clinics) in identified high‑burden areas.\\
+\item
+  \textbf{Investigate underlying drivers} of regional variation, such as
+  climate, socio‑economic status, and health‑service coverage.\\
+\item
+  \textbf{Plan targeted interventions}, combining spatial analysis with
+  demographic and environmental data in future work.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,168 @@
+---
+title: "Spatial Analysis of major communicable and chronic diseasesin Kenya"
+author: "CHEGE GEORGE MWANGI (SCT213-C002-0004/2020)"
+date: "2025-04-20"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+---
+**INTRODUCTION**
+
+Understanding the geographic distribution of major communicable and chronic diseases is critical for targeting public health interventions in Kenya. In this analysis, we combine county‑level administrative boundaries with case records for Malaria, Tuberculosis (TB), HIV and Asthma to:
+
+1. **Quantify incidence** by computing the number of reported cases per disease in each of Kenya’s 47 counties.  
+2. **Visualize spatial patterns** via choropleth maps, using color ramps tailored to each disease.  
+3. **Compare relative burden** across diseases and regions, highlighting hotspots where case counts are especially high.  
+
+Our data sources are:
+
+- **KEN_adm1 shapefile** from the Kenya National Bureau of Statistics, providing up‑to‑date county boundaries.  
+- **Disease case CSV** (WHO prediction dataset), containing individual case records with county identifiers and disease labels.  
+
+By the end of this report, we will have four clear, standalone maps—one per disease—and insights into where resources and interventions might be most urgently needed.
+
+---
+
+
+
+```{r}
+packages <- c("sf", "spData", "ggplot2", "dplyr", "tidyverse")
+installed <- packages %in% installed.packages()
+library(sf)          # For spatial data handling
+library(tidyverse)   # For data manipulation
+library(ggplot2)     # For visualization
+library(spdep)       # For spatial autocorrelation
+library(tmap)        # For thematic mapping
+library(sp)          # For spatial data classes
+library(RColorBrewer)# For color palettes
+library(leaflet)     # For interactive maps
+
+```
+
+```{r}
+# Load Kenya administrative shape file
+Counties_shp <- st_read("C:/Users/cex/Desktop/data science/DATA SCIENCE 4.2 2025/SDS 2403 R PROGRAMMING FOR BUSINESS ANALYTICS/New folder/KEN_adm_shp")
+# List all shape file layers
+st_layers("C:/Users/cex/Desktop/data science/DATA SCIENCE 4.2 2025/SDS 2403 R PROGRAMMING FOR BUSINESS ANALYTICS/New folder/KEN_adm_shp")
+
+```
+```{r}
+# Read counties (KEN_adm1)
+counties_df <- st_read("C:/Users/cex/Desktop/data science/DATA SCIENCE 4.2 2025/SDS 2403 R PROGRAMMING FOR BUSINESS ANALYTICS/New folder/KEN_adm_shp", 
+                          layer = "KEN_adm1")
+
+
+```
+```{r}
+# Read the healthcare CSV file
+Diseases_df <- read_csv("Kenya Malaria_Prediction Dataset by who(1).csv")
+
+# View the structure to understand the data
+str(Diseases_df)
+head(Diseases_df)
+```
+```{r}
+# Merge shape file (counties_df) with Diseases_df by county name (NAME_1)
+merged_data <- counties_df %>%
+  left_join(Diseases_df, by = "NAME_1")
+
+# View the merged result
+head(merged_data)
+
+
+```
+```{r}
+# Count cases per condition per county
+diseases_ken <- Diseases_df %>%
+  group_by(NAME_1, Diseases) %>%
+  summarise(Cases = n(), .groups = "drop")
+# List of diseases to map
+diseases <- c("Malaria", "TB", "HIV", "Asthma")
+
+```
+
+```{r}
+# Loop through diseases and plot
+for (disease in diseases) {
+  
+  # Filter for one disease
+  Dis_data <- diseases_ken %>%
+    filter(Diseases == disease)
+  
+  # Merge with spatial data
+  merged_map <- counties_df %>%
+    left_join( Dis_data, by = "NAME_1")
+}
+```
+
+
+
+```{r}
+# a named vector of palettes
+palettes <- c(
+  Malaria = "YlOrRd",
+  TB      = "Blues",
+  HIV     = "Purples",
+  Asthma  = "Greens"
+)
+
+# loop: merge + plot in one step
+for (d in names(palettes)) {
+  
+  # 1) subset your counts  
+  df_d <- diseases_ken %>% 
+    filter(Diseases == d)
+  
+  # 2) join spatial geometry  
+  map_d <- counties_df %>% 
+    left_join(df_d, by = "NAME_1")
+  
+  # 3) build & immediately print the plot  
+  p <- ggplot(map_d) +
+    geom_sf(aes(fill = Cases), color = "white", size = 0.2) +
+    scale_fill_distiller(
+      palette   = palettes[d],
+      direction = 1,
+      na.value  = "grey90",
+      name      = "Count"
+    ) +
+    labs(
+      title    = paste0(d, " Cases by County"),
+      subtitle = "Kenya, 2020"
+    ) +
+    theme_minimal() +
+    theme(legend.position = "right")
+  
+  print(p)
+}
+```
+
+
+
+
+
+
+
+**CONCLUSION**
+
+This spatial analysis reveals distinct geographic patterns for each disease:
+
+- **Malaria** shows its highest burdens in the western and coastal counties, consistent with known high‑transmission zones.  
+- **TB** case counts are elevated in urban centers (e.g. Nairobi, Mombasa) and portions of the Rift Valley, likely reflecting both population density and health‑system access.  
+- **HIV** remains concentrated in western counties bordering Lake Victoria, aligning with historical prevalence data.  
+- **Asthma** rates appear more dispersed, with moderate counts in both highland and lowland regions—suggesting environmental and lifestyle factors at play.
+
+These maps can guide policymakers and health practitioners to:
+
+- **Prioritize resource allocation** (e.g. bed nets, diagnostic clinics) in identified high‑burden areas.  
+- **Investigate underlying drivers** of regional variation, such as climate, socio‑economic status, and health‑service coverage.  
+- **Plan targeted interventions**, combining spatial analysis with demographic and environmental data in future work.  
+
+
+
+
+
+
+
+
